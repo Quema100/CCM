@@ -1,0 +1,19 @@
+{
+    "manifest_version" :  3,
+    "name" : "CCM",
+    "description" :"extensions by Quema",
+    "version" : "1.0.0",
+
+    "content_scripts": [
+        {
+            "matches": ["https://www.classcard.net/*"],
+            "js": ["injectionfile.js"]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+          "resources": ["injection.js"],
+          "matches": ["https://www.classcard.net/*"]
+        }
+    ]
+}
