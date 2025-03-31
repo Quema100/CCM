@@ -10,6 +10,7 @@ let alertPressed = false;
 const recallEvents = () => {
     document.querySelector('div[class="btn-top-menu"] > a[onclick]').addEventListener('click', () => {
         p = 0;
+        lateP = null;
         console.log("초기화되었습니다.");
     });
 
