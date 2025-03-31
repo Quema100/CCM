@@ -1,5 +1,6 @@
 let i = 0;
 let p = 0;
+let fin = false;
 let latei = null;
 let lateP = null;
 let spellstart = false;
@@ -24,6 +25,24 @@ const recallEvents = () => {
             },1500)
         }
     });
+
+    document.addEventListener('keydown', (e) => {
+        console.log(e.key);
+        if (e.key === ' ' && fin) {
+            lateP = null;
+            console.log(`문제를 다음으로 넘겼습니다. 현재 인덱스: ${i}`);
+            fin = false;
+        }
+    });
+
+    document.addEventListener('keyup', (e) => {
+        console.log(e.key);
+        if (e.key === ' ' && fin) {
+            lateP = null;
+            console.log(`문제를 다음으로 넘겼습니다. 현재 인덱스: ${i}`);
+            fin = false;
+        }
+    });
 }
 
 const recall = () => {
@@ -44,7 +63,7 @@ const recall = () => {
     const recallM = document.querySelectorAll('.card-quest-item.cc-table.middle.fill-parent-w.back-quest.answer > .card-quest-list > .cc-ellipsis.l1')[p]
 
     if (knownCount === lateP) return console.log("문제를 풀고 있습니다.");
-    if (p >= totalCount) return p = 0, console.log("모든 문제를 완료했습니다.");
+    if (p >= totalCount) return p = 0, fin = true, console.log("모든 문제를 완료했습니다.");
 
     if (recallM && !alertPressed) {
         lateP = knownCount
