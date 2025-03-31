@@ -1,14 +1,14 @@
 let i = 0;
-let j = 0;
+let p = 0;
 let latei = null;
-let latej = null;
+let lateP = null;
 let spellstart = false;
 let recallstart = false;
 let alertPressed = false;
 
 const recallEvents = () => {
     document.querySelector('div[class="btn-top-menu"] > a[onclick]').addEventListener('click', () => {
-        j = 0;
+        p = 0;
         console.log("초기화되었습니다.");
     });
 
@@ -17,9 +17,9 @@ const recallEvents = () => {
 
         if ( e.key >= '1' && e.key <= '4' && alertPressed) {
             setTimeout(() => {
-                j++;
-                latej = null;
-                console.log(`문제를 다음으로 넘겼습니다. 현재 인덱스: ${j}`);
+                p++;
+                lateP = null;
+                console.log(`문제를 다음으로 넘겼습니다. 현재 인덱스: ${p}`);
                 alertPressed = false;
             },1500)
         }
@@ -27,7 +27,7 @@ const recallEvents = () => {
 }
 
 const recall = () => {
-    if (!window.location.pathname.startsWith("/Recall")) return j = 0, recallstart = false, console.log("리콜 페이지가 아닙니다.");
+    if (!window.location.pathname.startsWith("/Recall")) return p = 0, recallstart = false, console.log("리콜 페이지가 아닙니다.");
 
     if (!recallstart) {
         recallEvents();
@@ -38,18 +38,16 @@ const recall = () => {
     const totalCount = parseInt(document.querySelector('.total_count').innerText.replace(/[^0-9]/g, ''), 10);
     const knownCount = parseInt(document.querySelector('.known_count').innerText.replace(/[^0-9]/g, ''), 10);
     console.log(`전체 문제: ${totalCount}, 알고 있는 문제: ${knownCount}`);
-    console.log(`현재 문제: ${j}`);
-    console.log(`지연된 문제: ${latej}`);
+    console.log(`현재 문제: ${p}`);
+    console.log(`지연된 문제: ${lateP}`);
 
-    const recallM = document.querySelectorAll('.card-quest-item.cc-table.middle.fill-parent-w.back-quest.answer > .card-quest-list > .cc-ellipsis.l1')[j]
+    const recallM = document.querySelectorAll('.card-quest-item.cc-table.middle.fill-parent-w.back-quest.answer > .card-quest-list > .cc-ellipsis.l1')[p]
 
-    if (knownCount === latej) return console.log("문제를 풀고 있습니다.");
-    
-    latej = knownCount
-
-    if (j >= totalCount) return j = 0, console.log("모든 문제를 완료했습니다.");
+    if (knownCount === lateP) return console.log("문제를 풀고 있습니다.");
+    if (p >= totalCount) return p = 0, console.log("모든 문제를 완료했습니다.");
 
     if (recallM && !alertPressed) {
+        lateP = knownCount
         alert(recallM.innerText);
         alertPressed = true;
         console.log("alert가 실행되었습니다.");
