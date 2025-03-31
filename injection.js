@@ -30,6 +30,7 @@ const recallEvents = () => {
         console.log(e.key);
         if (e.key === ' ' && fin) {
             lateP = null;
+            alertPressed = false;
             console.log(`문제를 다음으로 넘겼습니다. 현재 인덱스: ${i}`);
             fin = false;
         }
@@ -39,6 +40,7 @@ const recallEvents = () => {
         console.log(e.key);
         if (e.key === ' ' && fin) {
             lateP = null;
+            alertPressed = false;
             console.log(`문제를 다음으로 넘겼습니다. 현재 인덱스: ${i}`);
             fin = false;
         }
