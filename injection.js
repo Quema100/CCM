@@ -134,7 +134,8 @@ const spell = () => {
 
     const currentText = document.querySelectorAll('.text-normal.spell-answer')[i]
     if (!currentText) return i = 0;
-    const current = currentText.querySelector('.text-normal.spell-answer >.spell-content.font-32') || currentText.querySelector('.text-normal.spell-answer >.spell-content');
+    let current = currentText.querySelector('.text-normal.spell-answer >.spell-content.font-32');
+    if (!current) current = currentText.querySelector('.text-normal.spell-answer >.spell-content');
     console.log(current)
     if (!current) return console.log("텍스트를 찾을 수 없습니다.");
     if (knownCount === latei) return console.log("문제를 풀고 있습니다.");
