@@ -17,13 +17,13 @@ const recallEvents = () => {
     document.addEventListener('keydown', (e) => {
         console.log(e.key);
 
-        if ( e.key >= '1' && e.key <= '4' && alertPressed) {
+        if (e.key >= '1' && e.key <= '4' && alertPressed) {
             setTimeout(() => {
                 p++;
                 lateP = null;
                 console.log(`문제를 다음으로 넘겼습니다. 현재 인덱스: ${p}`);
                 alertPressed = false;
-            },1500)
+            }, 1500)
         }
     });
 
@@ -134,7 +134,7 @@ const spell = () => {
 
     const currentText = document.querySelectorAll('.text-normal.spell-answer')[i]
     if (!currentText) return i = 0;
-    const current = currentText.querySelector('.text-normal.spell-answer >.spell-content.font-32');
+    const current = currentText.querySelector('.text-normal.spell-answer >.spell-content');
     console.log(current)
     if (!current) return console.log("텍스트를 찾을 수 없습니다.");
     if (knownCount === latei) return console.log("문제를 풀고 있습니다.");
@@ -158,4 +158,4 @@ const spell = () => {
 }
 
 window.onload = () => { spell(); recall(); }
-setInterval(() => {spell(); recall();}, 1000)
+setInterval(() => { spell(); recall(); }, 1000)
