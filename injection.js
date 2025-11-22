@@ -63,14 +63,15 @@ const recall = () => {
     console.log(`현재 문제: ${p}`);
     console.log(`지연된 문제: ${lateP}`);
 
-    const recallM = document.querySelectorAll('.card-quest-item.cc-table.middle.fill-parent-w.back-quest.answer > .card-quest-list > .cc-ellipsis.l1')[p]
+    const recallM = document.querySelector('.fade.in > .CardItem.current.showing .fill-parent>.back-quest.answer')
 
     if (knownCount === lateP) return console.log("문제를 풀고 있습니다.");
     if (p >= totalCount) return p = 0, fin = true, console.log("모든 문제를 완료했습니다.");
 
     if (recallM && !alertPressed) {
         lateP = knownCount
-        alert(recallM.innerText);
+        let res = recallM.innerText
+        alert(res.substr(0, 1));
         alertPressed = true;
         console.log("alert가 실행되었습니다.");
     }
@@ -132,9 +133,7 @@ const spell = () => {
     console.log(`현재 문제: ${i}`);
     console.log(`지연된 문제: ${latei}`);
 
-    const currentText = document.querySelectorAll('.text-normal.spell-answer')[i]
-    if (!currentText) return i = 0;
-    const current = currentText.querySelector('.text-normal.spell-answer >.spell-content');
+    const current = document.querySelector('.fade.in > .CardItem.current.showing > .card-top .text-normal.spell-answer .spell-content')
     console.log(current)
     if (!current) return console.log("텍스트를 찾을 수 없습니다.");
     if (knownCount === latei) return console.log("문제를 풀고 있습니다.");
@@ -147,11 +146,10 @@ const spell = () => {
         }
     }
 
-    const inputField = document.querySelectorAll('div[class="text-normal spell-input"]>.form-control.input-lg.input-answer.m-center.w-90p')[i];
+    const inputField = document.querySelector('.fade.in > .CardItem.current.showing > .card-bottom .form-control.input-lg');
     console.log(inputField)
     if (inputField) {
         inputField.value = input;
-
     } else {
         console.error(`입력 필드를 찾을 수 없습니다. 인덱스: ${i}`);
     }
